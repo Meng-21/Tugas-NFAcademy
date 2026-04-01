@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Riwayat Pendidikan</title>
+</head>
+    <style>
+            .study-table {
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            }
+
+            .study-table thead {
+                background: linear-gradient(135deg, #0d6efd, #0a58ca);
+                color: white;
+            }
+
+            .study-table thead th {
+                text-align: center;
+                padding: 15px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+            }
+
+            .study-table tbody td {
+                padding: 12px;
+                vertical-align: middle;
+            }
+
+            .study-table tbody tr:nth-child(even) {
+                background-color: #f2f6ff;
+            }
+
+            .study-table tbody tr:hover {
+                background-color: #dbe5ff;
+                transition: 0.3s;
+            }
+            .study-table tbody td:first-child {
+                text-align: center;
+                font-weight: 500;
+            }
+            @media (max-width: 768px) {
+                .study-table {
+                    font-size: 14px;
+                }
+            }
+    </style>
+<body>
+    <div class="col-md-8" style="text-align: center;">
+        <div class="row">
+        <div class="card p-4 main-card">
+        <h3 class="mb-4">Riwayat Pendidikan</h3>
+
+        <div class="table-responsive">
+            <table class="table study-table mb-0"  border="1" cellpadding="5">
+                <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Jenjang</th>
+                    <th>Nama Sekolah</th>
+                    <th>Tahun</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>MI</td>
+                    <td>MIN 2 Padangsidimpua</td>
+                    <td>2011 - 2017</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SMP</td>
+                    <td>SMPN S Nurul Ilmi</td>
+                    <td>2017 - 2019</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>MA</td>
+                    <td>MAN 1 Padangsidimpuan</td>
+                    <td>2020 - 2023</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Kuliah</td>
+                    <td>STT Terpadu Nurul Fikri</td>
+                    <td>2023 - Sekarang</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+  </div>
+</div>
+</body>
+</html>
