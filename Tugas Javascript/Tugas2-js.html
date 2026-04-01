@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Kepegawaian</title>
+</head>
+<body>
+    <div id="hasil"></div>
+
+    <script>
+        //diketahui data pegawai
+        let nama = "dodi prayodi";
+        let umur = 25;
+        let jabatan ="Manajer";
+        let status ="Menikah";
+
+        //gaji pokok manajer 15jta, Asisten Manager 10jta, Staff 5jta
+        //tunjangan jabatan 15 % dari gaji pokok
+        //dan BPJS 10 % dari gaji pokok
+        //tunjangan keluarga (ternary) dapat dilihat dari status menikah 20 % dari gajipokok
+        // total gaji : menjumlahkan semua elemnt gaji menggunakan tfoot
+
+
+        //gaji pokok berdasarkan jabatan 
+        let gajiPokok;
+        if (jabatan === "Manajer") {
+            gajiPokok = 15000000;
+        } else if (jabatan === "Asisten Manager") {
+            gajiPokok = 10000000;
+        } else if (jabatan === "Staff") {
+            gajiPokok = 5000000;
+        } else {
+            gajiPokok = 0;          //jika tidak memiliki jabatan (jabatan yang tidak dikenal) maka gaji pokoknya 0
+        }
+
+        // tunjangan jabatan
+        let tunjanganJabatan = 0.15 * gajiPokok;
+        //BPJS
+        let bpjs = 0.10 * gajiPokok;    
+
+        //tunjangan keluarga (ternary)
+        let tunjanganKeluarga = (status === "Menikah") ? 0.20 * gajiPokok : 0;
+
+        //total gaji
+        let totalGaji = gajiPokok + tunjanganJabatan + bpjs + tunjanganKeluarga;
+
+
+        //membuat tabell
+        let tabel = "<table border='1' text align ='center' cellpadding='10' cellspacing='0'>" +
+                    "<thead>" +
+                        "<tr>" +
+                            "<th>Nama Pegawai</th>" +
+                            "<th>Umur</th>" +
+                            "<th>Jabatan</th>" +
+                            "<th>Status</th>" +
+                            "<th>Gapok</th>" +
+                            "<th>Tunjangan Jabatan</th>" +
+                            "<th>BPJS</th>" +
+                            "<th>Tunjangan Keluarga</th>" +
+                        "</tr>" +
+                    "</thead>" +    
+                    "<tbody>" +
+                        "<tr>" +
+                            `<td>${nama}</td>` +
+                            `<td>${umur}</td>` +
+                            `<td>${jabatan}</td>` +
+                            `<td>${status}</td>` +
+                            `<td>${gajiPokok}</td>` +
+                            `<td>${tunjanganJabatan}</td>` +
+                            `<td>${bpjs}</td>` +
+                            `<td>${tunjanganKeluarga}</td>` +
+                        "</tr>" +
+                "</tbody>" +
+                "<tfoot>" +
+                    "<tr>" +
+                        "<th colspan='7'>Total Gaji</th>" +
+                        `<th>${totalGaji}</th>` +
+                    "</tr>" +
+                "</tfoot>" +
+                "</table>";
+
+        //output menggunakn getelementbyID dari div hasil
+        document.getElementById("hasil").innerHTML = tabel;
+    </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Javascript 5 Event </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <div class="card shadow-lg rounded-4">
+            <div class="card-body">
+                <h2 class="text-center mb-4">Manajemen Produk</h2>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-5">
+                            <input type="text" id="nama" class="form-control" placeholder="Nama Produk">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="number" id="harga" class="form-control" placeholder="Harga">
+                        </div>
+                        <div class="col-md-3 d-grid">
+                            <button class="btn btn-success" id="btnTambah">Tambah</button>
+                        </div>
+                    </div>
+
+                <button class="btn btn-primary w-100 mb-3" id="btnTampil">
+                    Tampilkan Produk
+                </button>
+                    <!-- list produk -->
+                <ul class="list-group" id="listProduk"></ul>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // data awal produk di soal
+        let produkToko = [
+            { id: 1, nama: "Laptop", harga:12000000 },
+            { id: 2, nama: "Smartphone", harga: 5000000 },
+            { id: 3, nama: "Keyboard", harga: 250000 },
+            { id: 4, nama: "Mouse", harga: 150000 },
+            { id: 5, nama: "Monitor", harga: 2000000 }
+        ];
+
+        let idCounter = 6;      //idcounter itu untuk membuat id baru secara otomatis  saat menambah produk baru, jadi tidak perlu input id manual
+
+        // format rupiah agar ada titik sebagai pemisah ribuan
+        function formatRupiah(angka) {
+            return "Rp" + angka.toLocaleString("id-ID");
+        }
+
+        // menampilkan produk dengan destruction
+        function tampilkanProduk() {
+            const list = document.getElementById("listProduk");
+            list.innerHTML = "";
+
+            produkToko.forEach(({ id, nama, harga }) => {
+                const item = document.createElement("li");
+                item.className = "list-group-item d-flex justify-content-between align-items-center";
+
+                item.innerHTML = `
+                <div>
+                    <strong>${nama}</strong><br>
+                    <small class="text-muted">${formatRupiah(harga)}</small>
+                </div>
+                <button class="btn btn-danger btn-sm" onclick="hapusProduk(${id})">
+                    Hapus
+                </button>
+            `;
+
+                list.appendChild(item);
+            });
+        }
+
+        // Ttambah produk menggunakan speread operator dan rest parameter
+        function tambahProduk(...produkBaru) {
+            produkToko = [...produkToko, ...produkBaru];
+        }
+
+        // hapus produk 
+        function hapusProduk(id) {
+            produkToko = produkToko.filter(produk => produk.id !== id);
+            tampilkanProduk();
+        }
+
+        // event listener untuk tombol tambah dan tampilkan
+        document.getElementById("btnTambah").addEventListener("click", () => {
+            const nama = document.getElementById("nama").value;
+            const harga = document.getElementById("harga").value;
+
+            if (!nama || !harga) {
+                alert("Isi semua data!");
+                return;
+            }
+
+            tambahProduk({
+                id: idCounter++,
+                nama,
+                harga: Number(harga)
+            });
+
+            tampilkanProduk();
+
+            document.getElementById("nama").value = "";
+            document.getElementById("harga").value = "";
+        });
+
+        document.getElementById("btnTampil").addEventListener("click", tampilkanProduk);
+    </script>
+
+</body>
+
+</html>
